@@ -1,26 +1,16 @@
 package Regex;
 
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
 public class Regex001 {
-    private static final Pattern PATTERN = Pattern.compile("(\\+48)?5[0-9]{8}");
-
     public static void main(String[] args) {
-        validate("+48515332123");
-        validate("515336293");
-        validate("415336293");
-        validate("615332123");
-        validate("715332123");
-        validate("712123");
-        validate("51123");
-    }
-    private static void validate(String text) {
-        Matcher matcher = PATTERN.matcher(text);
-        if (matcher.matches()) {
-            System.out.println("Prawda dla numeru: " + text);
-        } else {
-            System.out.println("Fałsz dla numeru: " + text);
-        }
+        RegexTester tester = new RegexTester("(\\+48)?5[0-9]{8}");
+        tester.validate("+48515123456"); //true
+        tester.validate("+48715123456"); //false
+        tester.validate("515332123");
+        tester.validate("515336293");
+        tester.validate("415336293");
+        tester.validate("615332123");
+        tester.validate("715332123");
+        tester.validate("712123");
+        tester.validate("51123");
     }
 }
